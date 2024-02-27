@@ -4,8 +4,8 @@ from main import generar_numero_secreto, turno_jugadora, nuevo_juego
 
 class TestJuego(unittest.TestCase):
 
+    # Prueba para asegurar que el número secreto está entre 1 y 100
     def test_generar_numero_secreto(self):
-        # Prueba para asegurar que el número secreto está entre 1 y 100
         numero_secreto = generar_numero_secreto()
         self.assertTrue(1 <= numero_secreto <= 100)
 
@@ -29,11 +29,13 @@ class TestTurnoJugadora(unittest.TestCase):
 
 class TestNuevoJuego(unittest.TestCase):
 
+    # Prueba para verificar que se vuelve a jugar si la usuaria responde s
     @patch('builtins.input', side_effect=['s'])
     def test_jugar_de_nuevo_si(self, mock_input):
         resultado = nuevo_juego()
         self.assertTrue(resultado)
 
+    # Prueba para verificar que NO se vuelve a jugar si la usuaria responde n
     @patch('builtins.input', side_effect=['n'])
     def test_jugar_de_nuevo_no(self, mock_input):
         resultado = nuevo_juego()
@@ -41,7 +43,6 @@ class TestNuevoJuego(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    print("Everything passed")
 
     # Prueba para verificar cuando el número dado es mayor y el número secreto es menor
     # def test_no_adivina_numero_mayor(self):
